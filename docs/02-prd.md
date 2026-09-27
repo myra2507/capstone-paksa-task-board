@@ -2,108 +2,112 @@
 
 ## 1. Product Overview
 
-### Product Name
 
-Club Task and Event Hub
+The Club Task and Event Hub is a centralized web app for student club members and officers to manage club tasks and upcoming events in one place.
 
-### Product Summary
+Based on user research, club responsibilities and event information may be spread across email, calendars, and other communication platforms. Members may also rely on memory to keep track of assigned tasks.
 
-The Club Task and Event Hub is a centralized web application for student club members and club officers to manage club tasks and upcoming events in one place.
+The MVP will provide a single hub for one club where members can view their assigned tasks, see due dates, and view upcoming club events. Officers can assign tasks to members and keep the club's tasks, events, and roster up to date.
 
-The product addresses a problem identified during user research: club information and responsibilities can be spread across email, calendars, and other communication methods, while members may also rely on remembering tasks themselves.
-
-The MVP focuses on bringing assigned tasks, task due dates, and upcoming club events together in one main hub. Club officers can assign tasks to specific members, and members can view the tasks assigned to them.
+Each member will only see tasks assigned to them in their main hub.
 
 ---
 
 ## 2. Problem
 
-Student club members may receive responsibilities and event information through different places. During the user interview, the participant explained that club events and information often arrive through email, that she uses Outlook Calendar only when needed, and that she usually keeps tasks in her head.
+Student club responsibilities and event information can be communicated through different places, making it difficult for members to keep track of what they need to do and when they need to do it.
 
-This creates a risk that tasks or events are difficult to find or remember.
+In the user interview, the participant was involved in a club but did not use a consistent calendar. Club events and information were often sent through email, and she used Outlook Calendar only when needed. She also usually kept tasks in her head, while a designated note-taker distributed assignments and tasks.
 
-The product will provide one central location where a member can see their assigned tasks and upcoming club events.
+The Club Task and Event Hub addresses this problem by providing one central location for members to view their assigned tasks and upcoming club events.
 
 ---
 
-## 3. Target Users
+## 3. Target Users and Roles
 
-### Primary User: Club Member
+The MVP supports **one club** and exactly two roles:
 
-A student who belongs to a club and needs to keep track of assigned responsibilities and upcoming club events.
+* **Club Member**
+* **Club Officer**
 
-The member needs to:
+### Club Member
 
-* See tasks assigned specifically to them.
-* See when assigned tasks are due.
-* See upcoming club events.
-* See tasks and events together in one location.
+A club member can:
 
-### Secondary User: Club Officer
+* View their own assigned tasks.
+* View task due dates when provided.
+* Mark their own tasks as complete.
+* View upcoming club events.
+* View tasks and events together on the main hub.
 
-A student club officer who assigns responsibilities to club members.
+Members cannot view other members' tasks in their main hub.
 
-The officer needs to:
+### Club Officer
 
-* Create a task.
-* Assign the task to a specific club member.
+A club officer is also a club member and has all member capabilities.
+
+Officers can additionally:
+
+* Create and assign tasks to any club member, including themselves or another officer.
 * Provide a due date when appropriate.
+* Edit, reassign, and delete tasks.
+* Create, edit, and delete club events.
+* Add, edit, and remove members from the club roster.
+* View all club tasks in the officer task-management area for management purposes.
 
 ---
 
 ## 4. User Research Evidence
 
-The product requirements are based on an interview with a student club member.
+The product is based on an interview with a student club member.
 
-Key observations from the interview include:
+The participant:
 
-* The participant is involved in a club.
-* The participant does not consistently use a calendar.
-* Club events and information commonly arrive through email.
-* The participant uses Outlook Calendar when needed rather than as a primary system for all club information.
-* The participant usually keeps tasks in her head.
-* The club has a designated note-taker who distributes assignments and tasks to members.
+* Is involved in a club.
+* Does not have a consistent calendar.
+* Receives club events and information through email.
+* Uses Outlook Calendar only when needed.
+* Usually keeps tasks in her head.
+* Has a designated note-taker in the club who distributes assignments and tasks.
 
-These observations support the need for a centralized location for club tasks and events.
+These findings support the need for a centralized location where club members can see their responsibilities and upcoming events.
 
 ---
 
 ## 5. Product Goals
 
-The product will:
+The MVP will:
 
-1. Give club members one place to view their assigned tasks.
-2. Make task due dates visible when a due date has been provided.
-3. Give club members one place to view upcoming club events.
-4. Display assigned tasks and upcoming events together in a main hub.
-5. Allow club officers to assign tasks to specific club members.
-6. Ensure members only see tasks assigned to them as their own tasks.
+1. Provide members with one place to view their assigned tasks.
+2. Make task due dates visible when a due date is provided.
+3. Provide one place to view upcoming club events.
+4. Display tasks and upcoming events together on the main hub.
+5. Allow officers to assign tasks to specific club members.
+6. Ensure members only see their own assigned tasks in their main hub.
 
-The product will not attempt to replace every communication or calendar system used by a club.
+The product is not intended to replace all club communication or existing calendar systems.
 
 ---
 
 ## 6. MVP Scope
 
-### MVP: Club Task and Event Hub
+The main MVP flow is:
 
-The MVP will support the following end-to-end flow:
-
-**Officer assigns task → member receives the assigned task → member sees the task and due date → member sees upcoming club events in the same hub.**
+**Officer assigns task → task appears in assigned member's hub → member sees task and due date → member sees upcoming events in the same hub → member marks task complete.**
 
 The MVP includes:
 
 1. Viewing assigned tasks.
 2. Viewing task due dates.
-3. Viewing upcoming club events.
-4. Viewing tasks and events together in one main hub.
-5. Allowing a club officer to assign a task to a specific member.
+3. Viewing upcoming events.
+4. Viewing tasks and events together.
+5. Officer task assignment.
+6. Marking tasks complete.
+7. Officer editing, reassigning, and deleting tasks.
+8. Officer creating, editing, and deleting events.
+9. Officer managing the club roster.
 
-### Why These Features Are the MVP
-
-These features represent the smallest end-to-end version of the product that addresses the main problem identified during the interview: club responsibilities and information can be spread across different places, while the participant often relies on remembering tasks and checking email or a calendar when necessary.
-
-The MVP creates one central place for the core task and event information without requiring external integrations.
+These capabilities support the core workflow from task assignment through completion while keeping the MVP focused on one club.
 
 ---
 
@@ -111,108 +115,154 @@ The MVP creates one central place for the core task and event information withou
 
 ### Story 1 — View Assigned Tasks
 
-**As a club member, I want to see my assigned tasks in one place so that I don't have to rely on remembering them.**
+**As a club member, I want to see tasks assigned to me so that I know what I am responsible for.**
 
-**Acceptance Criteria**
+**Acceptance Criteria:**
 
-1. Given a club member has an assigned task, when they open their task view, then the assigned task is displayed.
-2. Given a club member has no assigned tasks, when they open their task view, then tasks assigned to other members are not displayed.
+* Given a member has an assigned task, opening the main hub displays that task in **My Tasks**.
+* If the member has no assigned tasks, the My Tasks section displays a message indicating that there are no assigned tasks.
+* Tasks assigned to other members are not displayed in the member's My Tasks section.
 
 ---
 
 ### Story 2 — View Task Due Dates
 
-**As a club member, I want to see when my assigned tasks are due so that I know which tasks need my attention first.**
+**As a club member, I want to see task due dates so that I know when my work needs to be completed.**
 
-**Acceptance Criteria**
+**Acceptance Criteria:**
 
-1. Given an assigned task has a due date, when the member views the task, then the due date is displayed with the task.
-2. Given two assigned tasks have different due dates, when the member views their tasks, then the due dates are shown clearly enough to distinguish which task is due first.
-3. Given a task has no due date, when the member views the task, then the system does not display an incorrect or invented due date.
+* A task may have a due date represented as a calendar date.
+* Due dates are displayed clearly enough for members to distinguish which tasks are due first.
+* A task without a due date does not display an invented due date.
+* Due dates do not include required times.
 
 ---
 
 ### Story 3 — View Upcoming Club Events
 
-**As a club member, I want to see upcoming club events in one place so that I don't have to search through emails to find them.**
+**As a club member, I want to see upcoming club events so that I know what is happening.**
 
-**Acceptance Criteria**
+**Acceptance Criteria:**
 
-1. Given a club has an upcoming event, when a member opens the events view, then the upcoming event is displayed with its event information.
-2. Given there are multiple upcoming events, when the member opens the events view, then the events are displayed separately so each event can be identified.
-3. Given there are no upcoming events, when the member opens the events view, then past events are not presented as upcoming events.
+* An event displayed in Upcoming Events includes a title and date.
+* Optional event details may include time, location, and description.
+* Multiple events are displayed chronologically, with the earliest event first.
+* Events occurring before today are not displayed in Upcoming Events.
+* Events occurring today are displayed.
+* If there are no upcoming events, the section displays a message indicating that there are no upcoming events.
 
 ---
 
 ### Story 4 — View Tasks and Events Together
 
-**As a club member, I want to see my tasks and upcoming events together so that club information isn't scattered across different places.**
+**As a club member, I want to see my tasks and upcoming events in one place so that I do not have to search through multiple platforms.**
 
-**Acceptance Criteria**
+**Acceptance Criteria:**
 
-1. Given a member has assigned tasks and upcoming club events, when they open the main hub, then both their tasks and upcoming events are visible.
-2. Given the member has no assigned tasks but does have upcoming events, when they open the main hub, then the upcoming events are still displayed.
-3. Given the member has tasks assigned to another member, when they open the main hub, then those other members' assignments are not displayed as their own.
-
----
-
-### Story 5 — Task Reminders
-
-**As a club member, I want to receive reminders about upcoming tasks so that I don't forget to complete them.**
-
-**Priority: Should Have**
-
-**Acceptance Criteria**
-
-1. Given a member has an assigned task with an upcoming due date, when the reminder time is reached, then the member receives a reminder for that task.
-2. Given a member has multiple upcoming tasks, when reminders are generated, then each reminder identifies the task it refers to.
-3. Given a task has already passed its due date, when the reminder system runs, then it does not label the task as an upcoming task.
-
-This feature is not required for the MVP.
+* My Tasks and Upcoming Events are displayed directly on the main hub.
+* Tasks and events appear in separate sections.
+* If there are no tasks, the event section remains visible.
+* If there are no events, the task section remains visible.
+* A member's main hub never displays another member's tasks.
+* The main hub is the first page the member sees when entering the app.
 
 ---
 
-### Story 6 — Event Reminders
+### Story 7 — Assign Tasks
 
-**As a club member, I want to receive reminders about upcoming club events so that I don't miss them.**
+**As a club officer, I want to assign a task to a specific club member so that responsibility for the task is clear.**
 
-**Priority: Should Have**
+**Acceptance Criteria:**
 
-**Acceptance Criteria**
-
-1. Given a member has an upcoming club event, when the event reminder time is reached, then the member receives a reminder identifying the event.
-2. Given there are multiple upcoming events, when reminders are sent, then each reminder identifies the corresponding event.
-3. Given an event has already occurred, when the reminder system runs, then the system does not send it as an upcoming-event reminder.
-
-This feature is not required for the MVP.
-
----
-
-### Story 7 — Assign Tasks to Members
-
-**As a club officer, I want to assign a task to a specific club member so that each person knows what they are responsible for.**
-
-**Acceptance Criteria**
-
-1. Given a club officer is creating a task, when they select a club member as the assignee, then that member is listed as responsible for the task.
-2. Given a task has been assigned to a member, when that member views their tasks, then the task appears in their assigned-task list.
-3. Given an officer has not selected an assignee, when they attempt to assign the task, then the system does not falsely show the task as assigned to a member.
+* A task requires a task name.
+* A task requires exactly one club-member assignee.
+* The assignee must be a member of the club roster.
+* A description is optional.
+* A due date is optional.
+* If an assignee is not selected, the task cannot be saved and the required field is identified.
+* If a task name is not provided, the task cannot be saved and the required field is identified.
+* Officers can assign tasks to any roster member, including themselves or another officer.
+* After saving, the assigned member can see the task in My Tasks.
 
 ---
 
-### Story 8 — New Assignment Notifications
+### Story 9 — Mark Task Complete
 
-**As a club member, I want to be notified when an officer assigns me a task so that I know when new work has been given to me.**
+**As a club member, I want to mark my assigned task as complete so that I can track my progress.**
 
-**Priority: Should Have**
+**Acceptance Criteria:**
 
-**Acceptance Criteria**
+* A member can mark their own assigned task as complete.
+* A completed task is clearly shown as complete.
+* A member cannot mark another member's task as complete.
 
-1. Given an officer assigns a new task to a member, when the assignment is saved, then the assigned member receives a notification about the new task.
-2. Given the member receives the notification, when they open it, then they can identify which task was assigned.
-3. Given a task is assigned to Member A, when the assignment is saved, then Member B does not receive a notification for Member A's assignment.
+---
 
-This feature is not required for the MVP.
+### Story 10 — Edit, Reassign, or Delete Tasks
+
+**As a club officer, I want to manage existing tasks so that task information stays accurate.**
+
+**Acceptance Criteria:**
+
+* An officer can edit a task's name, description, or due date.
+* Changes are reflected after the app is refreshed.
+* An officer can reassign a task from one roster member to another.
+* After reassignment, the task appears for the new assignee and no longer appears for the previous assignee.
+* An officer can delete a task.
+* After deletion, the task no longer appears.
+* An officer cannot save a task without a task name or assignee.
+* A non-officer cannot edit, reassign, or delete tasks.
+
+---
+
+### Story 11 — Manage Club Events
+
+**As a club officer, I want to manage club events so that members can see accurate upcoming events.**
+
+**Acceptance Criteria:**
+
+* An event requires a title.
+* An event requires a date.
+* Time, location, and description are optional.
+* If the title or date is missing, the event cannot be saved and the missing required field is identified.
+* Officers can edit existing events.
+* Officers can delete existing events.
+* Changes to events are reflected after the app is refreshed.
+* A non-officer cannot create, edit, or delete events.
+
+---
+
+### Story 12 — Manage Club Roster
+
+**As a club officer, I want to manage the club roster so that tasks can only be assigned to current club members.**
+
+**Acceptance Criteria:**
+
+* An officer can add a member to the club roster.
+* A roster member can be assigned a role of Member or Officer.
+* A roster member can be selected as a task assignee.
+* A removed member cannot be selected as a new task assignee.
+* A non-officer cannot change the club roster.
+
+---
+
+### Deferred Stories
+
+The following stories are not part of the MVP and are deferred for future development:
+
+**Story 5 — Task Reminders**
+
+As a club member, I want reminders about upcoming task deadlines so that I do not forget to complete my work.
+
+**Story 6 — Event Reminders**
+
+As a club member, I want reminders about upcoming club events so that I do not miss them.
+
+**Story 8 — Assignment Notifications**
+
+As a club member, I want to be notified when an officer assigns me a task so that I know when new work has been given to me.
+
+These features are retained for future reference but will not be built as part of this semester's MVP.
 
 ---
 
@@ -220,183 +270,253 @@ This feature is not required for the MVP.
 
 ### Must Have
 
-The following requirements are necessary for the MVP:
-
-* View assigned tasks.
-* See task due dates.
-* See upcoming club events.
-* See tasks and events together in one main hub.
-* Assign tasks to specific club members.
+* Story 1: View Assigned Tasks
+* Story 2: View Task Due Dates
+* Story 3: View Upcoming Club Events
+* Story 4: View Tasks and Events Together
+* Story 7: Assign Tasks
+* Story 9: Mark Task Complete
+* Story 10: Edit, Reassign, or Delete Tasks
+* Story 11: Manage Club Events
+* Story 12: Manage Club Roster
 
 ### Should Have
 
-These features are useful but are not required for the core MVP:
-
-* Task reminders.
-* Event reminders.
-* Notifications for new task assignments.
+None for the current MVP.
 
 ### Won't Have This Semester
 
-The following features are explicitly outside the semester's MVP scope:
-
-* Automatic calendar integration.
-* Automatic email integration.
-* Automatic importing of club events from Outlook.
-* Automatic importing of club events from email.
-* Social or reward features such as confetti.
-* Advanced analytics or reporting about member participation.
-* Automatic assignment of tasks based on member availability.
-
-These features are excluded so that development remains focused on the core task and event management experience.
+* Task reminders
+* Event reminders
+* Assignment notifications
+* Calendar or email integrations
+* Automatic importing of events or tasks
+* Multiple clubs
+* Recurring events
+* Advanced permission systems
+* Multiple assignees for one task
+* Task due times
+* Real-time updates
+* Confetti or reward features
+* Advanced analytics
+* Automatic task assignment based on member availability
 
 ---
 
 ## 9. MVP Acceptance Criteria
 
-The MVP is complete when all of the following are true:
+The MVP is considered functional when:
 
-### MVP Criterion 1
-
-A club officer can create a task and assign it to a specific club member.
-
-### MVP Criterion 2
-
-The assigned member can open the main hub and see the task assigned to them.
-
-### MVP Criterion 3
-
-The assigned task displays its due date when a due date has been provided.
-
-### MVP Criterion 4
-
-The member can see upcoming club events in the same main hub.
-
-### MVP Criterion 5
-
-Tasks assigned to other members are not displayed as the current member's tasks.
+1. An officer can create a task with a name and one roster member as the assignee.
+2. The assigned member can open the app and see the task in My Tasks.
+3. A provided due date is displayed clearly, while a task without a due date does not display an invented date.
+4. Today and future events appear in Upcoming Events in chronological order on the same main hub.
+5. Members do not see another member's task in their My Tasks section.
+6. A member can mark their own task as complete.
+7. An officer can edit, reassign, and delete tasks, and reassigned tasks appear only for the new assignee.
+8. An officer can create, edit, and delete events and manage roster members.
+9. Empty task and event sections display clear messages instead of appearing broken.
 
 ---
 
 ## 10. Data and Display Requirements
 
+### Club
+
+* The MVP supports exactly one club.
+
+### Roster
+
+Each roster member has:
+
+* Name
+* Role: Member or Officer
+
+Only roster members can be assigned tasks.
+
 ### Tasks
 
-Each task must be associated with:
+Each task contains:
 
-* A task description or name.
-* A specific assignee.
-* A due date when one has been provided.
+* Name — required
+* Description — optional
+* Assignee — required, exactly one roster member
+* Due date — optional, calendar date only
+* Completion status — required and false when created
 
-If no due date has been provided, the system must not invent one.
+A member can mark their own task complete.
 
-A member's task view must only identify tasks assigned to that member as their own tasks.
+Completed tasks remain visible in My Tasks and are clearly marked as complete. The member can undo completion and return the task to an incomplete state.
+
+In My Tasks:
+
+* Tasks with due dates appear first, ordered by earliest due date.
+* Tasks without due dates appear after tasks with due dates.
+* Completed tasks remain in the same ordering but are clearly marked complete.
+* Tasks with a due date before today are labeled as overdue.
+* Overdue tasks remain visible until completed or deleted.
+* No due date is invented when one was not provided.
+* Members only see their own tasks in the main hub.
+
+Officers may assign a due date that is already in the past.
 
 ### Events
 
-Each event must contain enough information for a member to identify the event.
+Each event contains:
 
-Upcoming events must be distinguishable from past events.
+* Title — required
+* Date — required
+* Start/end time — optional
+* Location — optional
+* Description — optional
 
-Past events must not be presented as upcoming events.
+An upcoming event is an event whose date is today or later.
+
+An event whose date is before today is considered past and is hidden from the Upcoming Events section.
+
+"Today" is based on the current local date where the app is being used.
+
+Upcoming events are displayed chronologically.
 
 ### Main Hub
 
-The main hub must provide access to both:
+The main hub is the first page members see.
 
-* The current member's assigned tasks.
-* Upcoming club events.
+It contains two separate sections:
 
-The presence or absence of tasks must not prevent upcoming events from being displayed.
+**My Tasks**
 
----
+* Shows the current user's tasks.
+* Shows completion status.
+* Shows due dates when provided.
 
-## 11. Out of Scope
+**Upcoming Events**
 
-The following are not part of the current semester's product requirements:
+* Shows all upcoming club events.
+* Displays events chronologically.
 
-### External Integrations
+The sections operate independently. If one section is empty, the other section remains visible.
 
-The application will not automatically connect to or import information from:
+### Officer Management Areas
 
-* Outlook Calendar.
-* Email accounts.
-* Other external calendar systems.
+Officer management areas are separate from the main member hub.
 
-### Advanced Automation
+Officers may view all club tasks within the officer task-management area so they can edit, reassign, or delete them.
 
-The application will not automatically determine which member should receive a task based on availability.
-
-### Social and Reward Features
-
-The application will not include additional reward features such as confetti unless the scope is intentionally changed later.
-
-### Analytics
-
-The application will not provide advanced analytics or reporting about member participation.
-
-These exclusions prevent the product from expanding beyond the core problem of centralizing club tasks and events.
+This officer management access does not change what regular members see in their main hub.
 
 ---
 
-## 12. Break-Test Requirements
+## 11. Platform and Technical Assumptions
 
-The MVP requirements were reviewed for possible literal interpretations and loopholes.
+* The MVP is a desktop web application.
+* The MVP does not require real-time updates.
+* Users may refresh the application to see saved changes.
+* Sample or demonstration data may be used for development and testing.
+* Full authentication is not required for this course MVP.
+* A simple demo user-selection system can identify the current roster member and their role.
+
+---
+
+## 12. Out of Scope
+
+The following are outside the MVP:
+
+* Task reminders
+* Event reminders
+* Assignment notifications
+* Email integration
+* Calendar integration
+* Automatic importing
+* Multiple clubs
+* Advanced permission systems
+* Recurring events
+* Automatic assignment based on member availability
+* Social or reward features
+* Analytics
+
+---
+
+## 13. Break-Test Requirements
+
+The MVP must continue to behave correctly when tested with edge cases.
 
 ### Task Visibility
 
-A system could technically display an assigned task somewhere that is difficult to find.
+* A task assigned to Member A must appear for Member A.
+* The same task must not appear in Member B's My Tasks.
+* A task must not appear under the wrong assignee after reassignment.
 
-**Requirement:** The assigned task must be visible from the member's main hub without requiring the member to search through unrelated areas.
+### Due Dates
 
-### Correct Assignee
+* A task with a due date must display that date.
+* A task without a due date must not receive an invented date.
+* A task with a past due date must be identifiable as overdue.
 
-A system could display a task while identifying the wrong member as the assignee.
+### Events
 
-**Requirement:** The task must identify the member responsible for completing it.
+* Today's events must appear.
+* Past events must not appear in Upcoming Events.
+* Future events must appear in chronological order.
+* An empty event list must display an appropriate message.
 
-### Upcoming Events
+### Reassignment
 
-A system could display a past event in an upcoming-events section.
+* When a task is reassigned, it must appear for the new assignee.
+* It must no longer appear for the previous assignee.
 
-**Requirement:** Only events occurring in the future may appear in the upcoming-events section.
+### Empty Sections
 
-### Member-Specific Tasks
+* An empty My Tasks section must display a message.
+* An empty Upcoming Events section must display a message.
+* One empty section must not prevent the other section from displaying its content.
 
-A system could display every task in the club instead of only the current member's assignments.
+### Roster
 
-**Requirement:** The member's task view must distinguish their assigned tasks from tasks assigned to other members.
-
----
-
-## 13. Success Criteria
-
-The MVP will demonstrate that:
-
-1. An officer can assign a task to a specific member.
-2. The assigned member can find that task in the main hub.
-3. The member can identify the task's due date when one exists.
-4. The member can see upcoming club events in the same hub.
-5. A member does not mistake another member's assignment for their own.
-
-Success is defined by the application satisfying these observable requirements rather than by the number of additional features included.
+* A member with assigned tasks cannot be removed from the roster.
+* The officer must first reassign or delete that member's assigned tasks.
+* Once the member has no assigned tasks, the officer can remove them from the roster.
 
 ---
 
-## 14. Future Considerations
+## 14. Success Criteria
 
-Features outside the MVP may be reconsidered after the core task and event hub is functional.
+The MVP succeeds when:
 
-Potential future features include:
+* An officer can assign a task to a club member.
+* The assigned member can find the task in their main hub.
+* A task's due date is identifiable when one exists.
+* Members can see upcoming club events on the same hub as their tasks.
+* Members do not see another member's assignment as their own.
+* Members can mark their assigned tasks as complete.
+* Officers can keep tasks, events, and the club roster up to date.
 
-* Task reminders.
-* Event reminders.
-* New assignment notifications.
-* Calendar integration.
-* Email integration.
-* Automatic event importing.
-* Availability-based assignment.
-* Social or reward features.
-* Participation analytics.
+---
 
-These features are not requirements for the current MVP and should not be implemented at the expense of the core task and event experience.
+## 15. Future Considerations
+
+Potential future improvements include:
+
+* Task reminders
+* Event reminders
+* Assignment notifications
+* Calendar and email integrations
+* Importing events or tasks
+* Support for multiple clubs
+* Recurring events
+* Assignment based on member availability
+* Reward or social features
+* Analytics
+
+These features are not required for the current MVP.
+
+---
+
+## 16. Open Questions
+
+The core MVP requirements have been defined sufficiently for development. Future implementation decisions may include:
+
+* How the demo user-selection experience should be presented visually.
+* Whether additional task sorting or filtering options would be useful in a future version.
+* How completed tasks should be displayed in a future expanded task-management experience.
+* Whether removed-member task handling should eventually support additional workflows beyond reassignment or deletion.
