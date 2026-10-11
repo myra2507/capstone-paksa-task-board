@@ -262,3 +262,36 @@ Each item below is out of scope in the PRD (§8 "Won't Have This Semester", §11
 6. **The demo-user choice is kept in `localStorage`** and cleared if that member is removed.
 7. **Loading `supabase-js` from a CDN** is acceptable for this course.
 8. In the officer task-management area, officers can edit, reassign, and delete any task, but the **mark-complete control appears only in a user's own My Tasks**, because the PRD says a member cannot mark another member's task complete.
+
+---
+
+## 10. Stack choice: Supabase over Firebase, and what it costs
+
+The short decision record is [`decisions/0001-backend-stack.md`](decisions/0001-backend-stack.md). This section holds the full comparison behind it. The two finalists from D06 were Supabase and Firebase (Cloud Firestore).
+
+**Decision: Supabase (PostgreSQL + auto-generated REST API). Firebase is not used.**
+
+Supabase stores data in **tables with rows and columns** that can point to each other (foreign keys), and the database refuses data that breaks the rules. Firestore stores flexible **documents** (like JSON objects), with strong built-in real-time syncing and offline support.
+
+| PRD need | Supabase | Firebase (Firestore) |
+|---|---|---|
+| Task must have one assignee who is on the roster (Story 7) | **Database enforces it** with a foreign key to `members` | No links between documents; my JavaScript would have to check |
+| Block removing a member who still has tasks (§13 Roster) | **One rule** (`ON DELETE RESTRICT`); the database refuses the delete | My code must count their tasks first, and a bug could skip it |
+| Date-only due dates (Story 2) | **Real `date` type** | Only timestamps; store dates as text like `"2026-10-15"` or risk time-zone shifts |
+| Dated tasks first, undated last (§10) | **One query** (`ORDER BY due_date ASC NULLS LAST`) | Sorting on a field skips documents that don't have it, so sort in the browser |
+| Officer list of all tasks with assignee names (Story 10) | **One query** joining tasks to members | Copy the member's name into every task, or make extra lookups |
+| No login (§11) | Auth available but **not used** | Auth available but **not used** |
+| No real-time (§11) | Realtime available but **not used** | Real-time is Firebase's main strength, but the PRD doesn't need it |
+| Plain HTML/JS, no build step | Yes (`supabase-js` from a CDN) | Yes (Firebase SDK from a CDN) |
+| Access control without login | Same limitation (§6) | Same limitation |
+
+**Why:** this project's data is a small set of linked records with rules — roster → tasks, plus events — which is what a relational database is built for. Several PRD rules become single database rules or single queries instead of JavaScript I'd have to write, test, and remember to call everywhere.
+
+**What I give up by not choosing Firebase:**
+
+1. **No pausing.** Supabase's free plan pauses a project after about 7 days of low activity ([Supabase docs: Project Pausing](https://supabase.com/docs/guides/platform/free-project-pausing)); Firebase's free plan doesn't. This is the biggest practical cost (see §8).
+2. **No SQL to learn.** With Supabase I must write SQL for tables, constraints, and Row Level Security policies.
+3. **One all-in-one console.** Firebase can host the site and store the data in one product; with Supabase, hosting is a separate Vercel dashboard.
+4. **Built-in real-time and offline support.** Not needed for this MVP, but it would matter if those features were added later.
+5. **More beginner tutorials**, especially for mobile apps.
+6. **Schema flexibility.** Firestore lets you add a field without changing a table; Supabase needs a new column first. For three small, stable tables, that costs little.

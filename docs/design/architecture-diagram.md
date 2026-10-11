@@ -10,15 +10,17 @@ GitHub renders the Mermaid code blocks below as diagrams automatically.
 
 The three planned parts and how data moves between them. There is no custom server and no login service.
 
+**Every box names the requirement it serves.** Story numbers and § sections refer to [`../02-prd.md`](../02-prd.md); R-numbers refer to the requirement list in §2 of [`../03-architecture.md`](../03-architecture.md).
+
 ```mermaid
 flowchart LR
     user(["Club member or officer<br/>(desktop browser)"])
 
     subgraph browser["Browser: plain HTML / CSS / JavaScript"]
-        picker["Demo-user picker<br/>(Viewing as: dropdown)"]
-        hub["Main hub: index.html<br/>My Tasks + Upcoming Events"]
-        officer["Officer pages<br/>tasks / events / roster"]
-        client["supabase-js client"]
+        picker["Demo-user picker<br/>(Viewing as: dropdown)<br/><i>Serves: PRD §11 demo user selection (R2)</i>"]
+        hub["Main hub: index.html<br/>My Tasks + Upcoming Events<br/><i>Serves: Stories 1, 2, 3, 4, 9 (R3–R8)</i>"]
+        officer["Officer pages<br/>tasks / events / roster<br/><i>Serves: Stories 7, 10, 11, 12 (R9–R13)</i>"]
+        client["supabase-js client<br/><i>Serves: all stories that read or save data</i>"]
         picker --> hub
         picker --> officer
         hub --> client
@@ -26,12 +28,12 @@ flowchart LR
     end
 
     subgraph vercel["Vercel (static hosting)"]
-        files["HTML, CSS, JS files<br/>from GitHub main branch"]
+        files["HTML, CSS, JS files<br/>from GitHub main branch<br/><i>Serves: PRD §11 desktop web app (R14)</i>"]
     end
 
     subgraph supabase["Supabase project"]
-        api["Auto-generated REST API<br/>+ Row Level Security policies"]
-        db[("PostgreSQL<br/>members / tasks / events")]
+        api["Auto-generated REST API<br/>+ Row Level Security policies<br/><i>Serves: Stories 1–4, 7, 9–12 reads and writes</i>"]
+        db[("PostgreSQL<br/>members / tasks / events<br/><i>Serves: §10 data rules, §13 roster rule,<br/>saved changes after refresh (R14)</i>")]
         api -->|SQL| db
         db -->|rows| api
     end
@@ -85,6 +87,12 @@ erDiagram
 ```
 
 `EVENTS` has no relationship to the other tables, because the PRD does not link events to members or tasks.
+
+| Table | Serves |
+|---|---|
+| `MEMBERS` | Story 12 (roster), PRD §3 roles, demo-user picker (§11) |
+| `TASKS` | Stories 1, 2, 7, 9, 10; §10 Tasks; §13 Roster rule via `ON DELETE RESTRICT` |
+| `EVENTS` | Stories 3, 11; §10 Events |
 
 ---
 
