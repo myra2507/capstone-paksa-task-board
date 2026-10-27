@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Club Task and Event Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Club Task and Event Hub</h1>
+    <div class="viewing-as">
+      <label for="viewing-as">Viewing as:</label>
+      <select id="viewing-as">
+        <option value="">Choose a member</option>
+      </select>
+    </div>
+    <nav>
+      <a id="officer-link" href="officer-tasks.html" hidden>Officer: manage tasks</a>
+    </nav>
+  </header>
+
+  <p class="prototype-banner">
+    Prototype: tasks are saved only in this browser (localStorage). There is no login; "Viewing as" is a demo picker.
+  </p>
+  <p id="storage-notice" class="notice" role="alert" hidden></p>
+
+  <main>
+    <section aria-labelledby="my-tasks-heading">
+      <h2 id="my-tasks-heading">My Tasks</h2>
+      <p id="task-message" class="message" role="status"></p>
+      <p id="my-tasks-empty" class="empty"></p>
+      <ul id="my-tasks" class="task-list"></ul>
+    </section>
+  </main>
+
+  <script src="js/dates.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/current-user.js"></script>
+  <script src="js/hub.js"></script>
+</body>
+</html>

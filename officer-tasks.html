@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Tasks</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Manage Tasks</h1>
+    <p id="viewing-as-text" class="viewing-as"></p>
+    <nav>
+      <a href="index.html">Back to main hub</a>
+    </nav>
+  </header>
+
+  <p class="prototype-banner">
+    Prototype: tasks are saved only in this browser (localStorage). There is no login; "Viewing as" is a demo picker.
+  </p>
+  <p id="storage-notice" class="notice" role="alert" hidden></p>
+
+  <main>
+    <p id="officers-only" class="notice" hidden>
+      Officers only. Choose an officer in "Viewing as" on the main hub to manage tasks.
+    </p>
+
+    <div id="officer-area" hidden>
+      <p id="page-message" class="message" role="status"></p>
+
+      <section aria-labelledby="form-heading">
+        <h2 id="form-heading">Create task</h2>
+        <form id="task-form" novalidate>
+          <div class="field">
+            <label for="task-name">Task name (required)</label>
+            <input id="task-name" name="name" type="text" aria-describedby="task-name-error">
+            <p id="task-name-error" class="field-error"></p>
+          </div>
+          <div class="field">
+            <label for="task-assignee">Assignee (required)</label>
+            <select id="task-assignee" name="assignee" aria-describedby="task-assignee-error">
+              <option value="">Choose a member</option>
+            </select>
+            <p id="task-assignee-error" class="field-error"></p>
+          </div>
+          <div class="field">
+            <label for="task-description">Description (optional)</label>
+            <textarea id="task-description" name="description" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label for="task-due-date">Due date (optional)</label>
+            <input id="task-due-date" name="dueDate" type="date">
+          </div>
+          <div class="form-actions">
+            <button id="save-button" type="submit">Save task</button>
+            <button id="cancel-button" type="button" hidden>Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="all-tasks-heading">
+        <h2 id="all-tasks-heading">All Tasks</h2>
+        <p id="all-tasks-empty" class="empty"></p>
+        <table id="all-tasks" class="task-table">
+          <thead>
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Assignee</th>
+              <th scope="col">Status</th>
+              <th scope="col">Due date</th>
+              <th scope="col">Description</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/dates.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/current-user.js"></script>
+  <script src="js/officer-tasks.js"></script>
+</body>
+</html>
